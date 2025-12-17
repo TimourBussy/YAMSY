@@ -6,3 +6,21 @@ services:
       - "8080:80"
     volumes:
       - ./src:/var/www/html
+    depends_on:
+    - db
+
+  db:
+    image: mysql:8.0
+    container_name: yamsy-db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: yamsy_db
+      MYSQL_USER: yamsy_user
+      MYSQL_PASSWORD: yamsy_pass
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:

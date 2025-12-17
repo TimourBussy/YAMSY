@@ -1,2 +1,7 @@
 .env
 *.log
+*.deb
+*.exe
+*.msi
+db_data/
+node_modules/

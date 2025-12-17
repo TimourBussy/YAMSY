@@ -1,4 +1,6 @@
 <?php
-echo "Hello Yams !";
-phpinfo();
+require_once 'controllers/GameController.php';
+
+$controller = new GameController();
+$controller->showWelcome();
 ?>
