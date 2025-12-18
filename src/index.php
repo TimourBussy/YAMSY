@@ -1,5 +1,5 @@
 <?php
-require_once 'controllers/GameController.php';
+require 'controllers/GameController.php';
 
 $controller = new GameController();
 $controller->showWelcome();
