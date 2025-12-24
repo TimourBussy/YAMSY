@@ -7,26 +7,22 @@ class AuthController {
     }
 
     public function showLogin() {
+        $mode = $_GET['mode'] ?? 'login';
+    
         $error = $_SESSION['error'] ?? null;
         unset($_SESSION['error']);
-
+    
         require 'views/login.php';
     }
 
     public function login() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header('Location: index.php?action=login');
             exit;
         }
 
         $username = $_POST['username'] ?? '';
         $password = $_POST['password'] ?? '';
-
-        if (empty($username) || empty($password)) {
-            $_SESSION['error'] = 'Please provide both username and password.';
-            header('Location: index.php?action=login');
-            exit;
-        }
 
         $user = $this->userModel->login($username, $password);
 
@@ -39,6 +35,35 @@ class AuthController {
         } else {
             $_SESSION['error'] = 'Invalid username or password.';
             header('Location: index.php?action=login');
+            exit;
+        }
+    }
+
+    public function signup() {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            header('Location: index.php?action=signup');
+            exit;
+        }
+    
+        $username = $_POST['username'] ?? '';
+        $password = $_POST['password'] ?? '';
+    
+        if (!$username || !$password) {
+            $_SESSION['error'] = 'All fields are required.';
+            header('Location: index.php?action=signup');
+            exit;
+        }
+    
+        $userId = $this->userModel->create($username, $password);
+    
+        if ($userId) {
+            $_SESSION['user_id'] = $userId;
+            $_SESSION['username'] = $username;
+            header('Location: index.php');
+            exit;
+        } else {
+            $_SESSION['error'] = 'Username already exists';
+            header('Location: index.php?action=signup');
             exit;
         }
     }

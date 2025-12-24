@@ -1,5 +1,6 @@
 <?php
 require_once 'models/Game.php';
+require_once 'models/User.php';
 class GameController {
     private $game;
 

@@ -6,18 +6,25 @@ require_once 'controllers/GameController.php';
 
 $action = $_GET['action'] ?? 'default';
 
-$publicActions = ['login', 'register', 'doLogin', 'doRegister'];
+$publicActions = ['login', 'signup', 'doLogin', 'doSignup'];
 
 if (in_array($action, $publicActions)) {
     $authController = new AuthController();
-    $authController->$action();
-
     switch ($action) {
         case 'login':
-            $authController->showLogin();
+            $authController->showLogin('login');
             break;
+        
+        case 'signup':
+            $authController->showLogin('signup');
+            break;
+        
         case 'doLogin':
             $authController->login();
+            break;
+        
+        case 'doSignup':
+            $authController->signup();
             break;
     }
     exit;
