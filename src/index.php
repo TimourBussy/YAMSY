@@ -4,19 +4,14 @@ session_start();
 require_once 'controllers/AuthController.php';
 require_once 'controllers/GameController.php';
 
-$action = $_GET['action'] ?? 'default';
+$action = $_GET['action'] ?? 'home';
 
-$publicActions = ['login', 'signup', 'doLogin', 'doSignup'];
-
-if (in_array($action, $publicActions)) {
+if (in_array($action, ['login', 'signup', 'doLogin', 'doSignup'])) {
     $authController = new AuthController();
     switch ($action) {
         case 'login':
-            $authController->showLogin('login');
-            break;
-        
         case 'signup':
-            $authController->showLogin('signup');
+            $authController->showLogin();
             break;
         
         case 'doLogin':
@@ -42,6 +37,10 @@ switch ($action) {
         $authController = new AuthController();
         $authController->logout();
         break;
-    default: $gameController->showGame();
+    
+    case 'home':
+    default:
+        $gameController->showGame();
+        break;
 }
 ?>

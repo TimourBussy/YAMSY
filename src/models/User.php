@@ -12,17 +12,21 @@ class User {
     public function create($username, $password) {
         try {
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
+    
             $stmt = $this->db->prepare("INSERT INTO users (username, password)
                                                VALUES (:username, :password)");
                                             
             $stmt->bindParam(':username', $username);
             $stmt->bindParam(':password', $hashedPassword);
-
+    
             $stmt->execute();
-
+    
             return $this->db->lastInsertId();
-        } catch (PDOException $e) { return false; }
+            
+        } catch (PDOException $e) {
+            error_log("Error creating user: " . $e->getMessage());
+            return false;
+        }
     }
 
     public function login($username, $password) {
