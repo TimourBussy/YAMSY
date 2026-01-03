@@ -7,8 +7,8 @@ $isSignup = $mode === 'signup';
 <html lang="en">
 <?php include 'includes/head.php'?>
 
-<body>
-  <div class="card login-card">
+<body class="login">
+  <div class="card-col login-card">
     <img src="/public/images/logo-full.png" alt="YAMSY logo" class="logo-full">
     <h4><?= $isSignup ? 'Create an account' : 'Login' ?></h4>
 

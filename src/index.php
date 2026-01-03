@@ -2,6 +2,7 @@
 session_start();
 
 require_once 'controllers/AuthController.php';
+require_once 'controllers/HomeController.php';
 require_once 'controllers/GameController.php';
 
 $action = $_GET['action'] ?? 'home';
@@ -30,17 +31,21 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-$gameController = new GameController();
-
 switch ($action) {
     case 'logout':
         $authController = new AuthController();
         $authController->logout();
         break;
     
+    case 'game':
+        $gameController = new GameController();
+        $gameController->showGame();
+        break;
+    
     case 'home':
     default:
-        $gameController->showGame();
+        $homeController = new HomeController();
+        $homeController->showHome();
         break;
 }
 ?>

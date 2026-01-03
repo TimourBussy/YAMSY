@@ -2,12 +2,18 @@
 <html lang="en">
 <?php include 'includes/head.php'?>
 
-<body>
-  <header>
-    <img src="/public/images/logo.png"
-      alt="YAMSY logo: orange and yellow Y-shaped symbol with bold yellow text reading YAMSY below it, representing a fun dice game for single and multiplayer gaming"
-      class="logo">
-    <a href="?action=logout" class="logout">Déconnexion</a>
+<body class="home">
+  <header class="card-row">
+    <div class="col">
+      <div class="logo-horizontal">
+        <img src="/public/images/logo-y.png" alt="YAMSY logo">
+        <div class="col">
+          <h1>YAMSY</h1>
+          <p class="big">Welcome, <?= htmlspecialchars($_SESSION['username']); ?>!</p>
+        </div>
+      </div>
+    </div>
+    <a href="?action=logout">Déconnexion</a>
   </header>
   <main>
 
