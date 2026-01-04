@@ -41,7 +41,7 @@ $isSignup = $mode === 'signup';
       <?php endif; ?>
       <button type="submit" class="main-button"><?= $isSignup ? 'Create account' : 'Sign in' ?></button>
       <div class="link-wrapper">
-        <a href="?action=<?= $isSignup ? 'login' : 'signup' ?>">
+        <a href="?action=<?= $isSignup ? 'login' : 'signup' ?>" class="have-account-link">
           <?= $isSignup ? 'Already have an account? Sign in' : 'No account? Sign up' ?>
         </a>
       </div>
