@@ -20,14 +20,13 @@
     <a href="?action=game">
       <div class="card-col">
         <div class="row">
-          <svg viewBox="-10 -10 44.15 44.15" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g id="SVGRepo_bgCarrier" stroke-width="0" transform="translate(0,0), scale(1)">
-              <rect x="-10" y="-10" width="44.15" height="44.15" rx="8.8" fill="#ffd6a7"></rect>
-            </g>
-            <g id="SVGRepo_iconCarrier" transform="scale(0.8) translate(3.25 3)">
-              <path fill-rule="evenodd" clip-rule="evenodd"
+          <svg viewBox="-10 -10 44.15 44.15" xmlns="http://www.w3.org/2000/svg">
+            <rect x="-10" y="-10" width="44.15" height="44.15" rx="8.8" fill="#ffd6a7"></rect>
+            <g transform="scale(0.8) translate(3.25 3)">
+              <path
                 d="M12 1C8.96243 1 6.5 3.46243 6.5 6.5C6.5 9.53757 8.96243 12 12 12C15.0376 12 17.5 9.53757 17.5 6.5C17.5 3.46243 15.0376 1 12 1ZM8.5 6.5C8.5 4.567 10.067 3 12 3C13.933 3 15.5 4.567 15.5 6.5C15.5 8.433 13.933 10 12 10C10.067 10 8.5 8.433 8.5 6.5Z"
-                fill="#fdb018"></path>
+                fill="#fdb018">
+              </path>
               <path
                 d="M8 14C4.68629 14 2 16.6863 2 20V22C2 22.5523 2.44772 23 3 23C3.55228 23 4 22.5523 4 22V20C4 17.7909 5.79086 16 8 16H16C18.2091 16 20 17.7909 20 20V22C20 22.5523 20.4477 23 21 23C21.5523 23 22 22.5523 22 22V20C22 16.6863 19.3137 14 16 14H8Z"
                 fill="#fdb018"></path>
@@ -42,12 +41,10 @@
     <a href="">
       <div class="card-col">
         <div class="row">
-          <svg viewBox="-10 -10 44.15 44.15" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g id="SVGRepo_bgCarrier" stroke-width="0" transform="translate(0,0), scale(1)">
-              <rect x="-10" y="-10" width="44.15" height="44.15" rx="8.8" fill="#fee685"></rect>
-            </g>
-            <g id="SVGRepo_iconCarrier" transform="scale(0.8) translate(3.75 3.75)">
-              <path fill-rule="evenodd" clip-rule="evenodd"
+          <svg viewBox="-10 -10 44.15 44.15" xmlns="http://www.w3.org/2000/svg">
+            <rect x="-10" y="-10" width="44.15" height="44.15" rx="8.8" fill="#fee685"></rect>
+            <g transform="scale(0.8) translate(3.75 3.75)">
+              <path
                 d="M9 0C5.96243 0 3.5 2.46243 3.5 5.5C3.5 8.53757 5.96243 11 9 11C12.0376 11 14.5 8.53757 14.5 5.5C14.5 2.46243 12.0376 0 9 0ZM5.5 5.5C5.5 3.567 7.067 2 9 2C10.933 2 12.5 3.567 12.5 5.5C12.5 7.433 10.933 9 9 9C7.067 9 5.5 7.433 5.5 5.5Z"
                 fill="#fa8711"></path>
               <path
@@ -60,7 +57,6 @@
                 d="M6 13C2.68629 13 0 15.6863 0 19V21C0 21.5523 0.447715 22 1 22C1.55228 22 2 21.5523 2 21V19C2 16.7909 3.79086 15 6 15H12C14.2091 15 16 16.7909 16 19V21C16 21.5523 16.4477 22 17 22C17.5523 22 18 21.5523 18 21V19C18 15.6863 15.3137 13 12 13H6Z"
                 fill="#fa8711"></path>
             </g>
-
           </svg>
           <h2>Multiplayer Mode</h2>
         </div>
@@ -68,11 +64,10 @@
       </div>
     </a>
 
-
     <div class="card-col">
       <div class="row">
         <svg class="trophee" viewBox="-2.4 -4 28.8 32" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#fdb018"
-          stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+          stroke-width="1.9">
           <g transform="translate(0, -1)">
             <path
               d="M12.0002 16C6.24021 16 5.21983 10.2595 5.03907 5.70647C4.98879 4.43998 4.96365 3.80673 5.43937 3.22083C5.91508 2.63494 6.48445 2.53887 7.62318 2.34674C8.74724 2.15709 10.2166 2 12.0002 2C13.7837 2 15.2531 2.15709 16.3771 2.34674C17.5159 2.53887 18.0852 2.63494 18.5609 3.22083C19.0367 3.80673 19.0115 4.43998 18.9612 5.70647C18.7805 10.2595 17.7601 16 12.0002 16Z" />
@@ -93,8 +88,7 @@
 
     <div class="card-col">
       <div class="row">
-        <svg class="trophee" viewBox="-2.4 -4 28.8 32" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#fa8711"
-          stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="trophee" viewBox="-2.4 -4 28.8 32" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#fa8711">
           <g transform="translate(0, -1)">
             <path
               d="M12.0002 16C6.24021 16 5.21983 10.2595 5.03907 5.70647C4.98879 4.43998 4.96365 3.80673 5.43937 3.22083C5.91508 2.63494 6.48445 2.53887 7.62318 2.34674C8.74724 2.15709 10.2166 2 12.0002 2C13.7837 2 15.2531 2.15709 16.3771 2.34674C17.5159 2.53887 18.0852 2.63494 18.5609 3.22083C19.0367 3.80673 19.0115 4.43998 18.9612 5.70647C18.7805 10.2595 17.7601 16 12.0002 16Z" />
