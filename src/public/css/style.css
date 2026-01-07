@@ -256,7 +256,7 @@ body.home {
 }
 
 header.card-row {
-	height: 3rem;
+	min-height: 3rem;
 	margin-bottom: 1.5rem;
 }
 
@@ -364,6 +364,14 @@ p:not(.big) {
 @media screen and (max-width: 767px) {
 	body.home {
 		padding: 1rem;
+	}
+
+	.card-row {
+		flex-direction: column;
+		justify-content: center;
+		height: auto;
+		padding: 4.25rem 0;
+		gap: 1rem;
 	}
 
 	.grid {
