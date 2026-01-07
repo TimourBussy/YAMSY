@@ -241,9 +241,13 @@ a:hover {
 }
 
 body.home {
+	min-height: 100vh;
+	display: flex;
 	flex-direction: column;
-	align-items: stretch;
-	padding: 2rem 12rem;
+	max-width: 1216px;
+	margin-inline: auto;
+	padding-block: 2rem;
+	padding-inline: clamp(1.25rem, 6vw, 6rem);
 }
 
 .card-row {
@@ -357,14 +361,19 @@ p:not(.big) {
 	margin-bottom: 1.75rem;
 }
 
-@media (max-width: 480px) {
-	.login-card {
-		width: 100%;
-		border-radius: 0;
+@media screen and (max-width: 767px) {
+	body.home {
+		padding: 1rem;
 	}
 
 	.grid {
 		grid-template-columns: 1fr;
-		gap: 1.5rem;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.login-card {
+		width: 100%;
+		border-radius: 0;
 	}
 }
