@@ -10,7 +10,7 @@ $isSignup = $mode === 'signup';
 <body class="login">
   <div class="card-col login-card">
     <img src="/public/images/logo-full.png" alt="YAMSY logo" class="logo-full">
-    <h4><?= $isSignup ? 'Create an account' : 'Login' ?></h4>
+    <h5><?= $isSignup ? 'Create an account' : 'Login' ?></h5>
 
     <?php if (isset($error)): ?>
       <div class="error-message">

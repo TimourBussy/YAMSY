@@ -124,6 +124,11 @@
                     <button disabled>Chance (any)</button>
                 </div>
             </div>
+            <hr>
+            <div class="row total">
+                <h4>Total</h4>
+                <span class="total-number">0</span>
+            </div>
         </div>
     </div>
 </body>
