@@ -207,7 +207,7 @@ button {
 	border-radius: 12px;
 }
 
-*:disabled {
+a:disabled {
 	opacity: 0.5;
 	cursor: not-allowed;
 }
@@ -350,7 +350,7 @@ svg {
 	width: 70px;
 }
 
-svg rect {
+.home svg rect {
 	opacity: 0.5;
 }
 
@@ -547,12 +547,16 @@ button .shapes {
 	gap: 0;
 }
 
-.game-grid.initial button {
+.game-grid button:disabled {
 	opacity: 0.9;
 	color: var(--color-grey4);
 	background-color: var(--color-grey6);
 	border-color: var(--color-grey5);
 	cursor: not-allowed;
+}
+
+.game-grid button:disabled svg {
+	opacity: 0.5;
 }
 
 .card-col:has(.game-grid) {
@@ -565,6 +569,13 @@ button .shapes {
 
 .game-grid svg {
 	width: 1rem;
+	height: 1rem;
+}
+
+@media screen and (max-width: 1024px) {
+	.game .grid {
+		grid-template-columns: 1fr;
+	}
 }
 
 @media screen and (max-width: 767px) {
@@ -581,8 +592,13 @@ button .shapes {
 		gap: 1rem;
 	}
 
-	.grid {
+	.home .grid {
 		grid-template-columns: 1fr;
+	}
+
+	.game header .col * {
+		width: 100%;
+		text-align: center;
 	}
 }
 
