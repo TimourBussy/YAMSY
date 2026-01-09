@@ -17,7 +17,8 @@ body {
 	display: flex;
 }
 
-.login {
+.login,
+.game-setup {
 	align-items: center;
 	justify-content: center;
 }
@@ -75,7 +76,8 @@ label {
 	cursor: default;
 }
 
-.text-field-group input {
+input[type="text"],
+input[type="password"] {
 	padding: 1rem;
 	border: 1px solid #d1d5dc;
 	border-radius: 9px;
@@ -113,6 +115,15 @@ button:focus-visible,
 a:focus-visible {
 	outline: 1px solid black;
 	outline-offset: 3px;
+}
+
+a.button:focus-visible,
+a:has(.card-col, .card-row):focus-visible {
+	outline-offset: 0;
+}
+
+a:has(.card-col, .card-row) {
+	border-radius: 16px;
 }
 
 .checkbox-field-group input:hover {
@@ -195,6 +206,7 @@ a:not(.button, :has(.card-col, .card-row)) {
 	padding: 1rem;
 	background-color: var(--color-primary);
 	color: white;
+	border: 1px solid transparent;
 	box-shadow: 0 3px 15px -7px rgba(0, 0, 0, 0.5);
 	transition: background-color 0.15s ease;
 }
@@ -312,8 +324,8 @@ a.button {
 	color: var(--color-grey2);
 	border: 1px solid var(--color-grey5);
 	border-radius: 12px;
-	padding: 0.75rem 1.5rem;
 	box-sizing: border-box;
+	padding: 0.75rem 1.5rem;
 	transition: background-color 0.3s ease;
 }
 
@@ -402,14 +414,6 @@ p:not(.big) {
 .game .card-row h2,
 .game .card-col h3 {
 	margin: 0;
-}
-
-.bold {
-	font-weight: bold;
-}
-
-.underline {
-	text-decoration: underline;
 }
 
 .game .card-col {
@@ -599,6 +603,94 @@ h4 {
 .row.total .total-number {
 	color: var(--color-primary);
 	font-size: 1.4rem;
+}
+
+.game-setup {
+	background-color: black;
+}
+
+.game-setup .card-col {
+	align-items: flex-start;
+}
+
+.game-setup form {
+	gap: 1.75rem;
+}
+
+.game-setup h2 {
+	margin: 0;
+}
+
+fieldset {
+	border: none;
+	padding: 0;
+	display: flex;
+	gap: 0.75rem;
+	flex-wrap: wrap;
+}
+
+fieldset legend {
+	font-size: 0.85rem;
+	font-weight: 500;
+	margin-bottom: 0.75rem;
+}
+
+fieldset input[type="radio"] {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+
+fieldset label {
+	font-size: 0.95rem;
+	font-weight: 500;
+	border: 2px solid var(--color-grey5);
+	border-radius: 12px;
+	padding: 1rem 1.6rem;
+	transition: border-color 0.15s ease;
+}
+
+fieldset label:hover {
+	border-color: var(--color-grey4);
+}
+
+input[type="radio"]:checked + label {
+	border-color: var(--color-primary);
+	background-color: #fff7ed;
+}
+
+input[type="radio"]:focus-visible + label {
+	border-color: #00000000;
+	outline: 1px solid black;
+	transition: none;
+}
+
+#playerNames {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+.game-setup input[type="text"] {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.game-setup .row {
+	width: 100%;
+	gap: 0.75rem;
+}
+
+.game-setup .row .button,
+.game-setup .row .main-button {
+	flex: 1;
+	padding: 1rem 1.5rem;
+	text-align: center;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
 }
 
 @container (max-width: 400px) {

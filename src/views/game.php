@@ -5,8 +5,11 @@
 <body class="game">
     <header class="card-row">
         <div class="col">
-            <h2>Solo Mode</h2>
-            <p><span class="bold underline">3</span> rolls left</p>
+            <h2><?= $nbPlayers > 1 ? 'Multiplayer' : 'Solo' ?> Mode</h2>
+            <p>
+                <?= $nbPlayers > 1 ? htmlspecialchars($_SESSION['username']) . "'s turn - " : "" ?>
+                3 rolls left
+            </p>
         </div>
         <a href="?action=home" class="button">Quit</a>
     </header>

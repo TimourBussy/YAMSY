@@ -39,7 +39,7 @@ $isSignup = $mode === 'signup';
           <label for="rememberMe">Remember me</label>
         </div>
       <?php endif; ?>
-      <button type="submit" id="submitBtn" class="main-button"><?= $isSignup ? 'Create account' : 'Sign in' ?></button>
+      <button type="submit" id="loginBtn" class="main-button"><?= $isSignup ? 'Create account' : 'Sign in' ?></button>
       <div class="link-wrapper">
         <a href="?action=<?= $isSignup ? 'login' : 'signup' ?>" class="have-account-link">
           <?= $isSignup ? 'Already have an account? Sign in' : 'No account? Sign up' ?>
@@ -47,7 +47,7 @@ $isSignup = $mode === 'signup';
       </div>
     </form>
   </div>
-  <script src="/public/js/script.js"></script>
+  <script src="/public/js/loadingBtn.js"></script>
 </body>
 
 </html>

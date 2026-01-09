@@ -38,7 +38,7 @@
       </div>
     </a>
 
-    <a href="">
+    <a href="?action=game_setup">
       <div class="card-col">
         <div class="row">
           <svg viewBox="-10 -10 44.15 44.15" xmlns="http://www.w3.org/2000/svg">
