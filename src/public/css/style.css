@@ -693,6 +693,12 @@ input[type="radio"]:focus-visible + label {
 	box-sizing: border-box;
 }
 
+.player-cards {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+}
+
 @container (max-width: 400px) {
 	.dice {
 		flex: 0 0 calc((100% - 2rem) / 3);

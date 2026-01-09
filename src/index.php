@@ -40,8 +40,23 @@ switch ($action) {
         break;
 
     case 'game':
-        $_SESSION['nb_players'] = $_POST['nbPlayers'] ?? 1;
-        $_SESSION['players'] = $_POST['players'] ?? [];
+        $nbPlayers = (int) ($_POST['nbPlayers'] ?? 1);
+        $rawPlayers = $_POST['players'] ?? [];
+        $players = [];
+
+        for ($i = 1; $i <= $nbPlayers; $i++) {
+            $name = trim($rawPlayers[$i - 1] ?? '');
+
+            if ($name === '') {
+                $name = ($i === 1) ? ($_SESSION['username'] ?? "Player 1") : "Player {$i}";
+            }
+
+            $players[] = $name;
+        }
+
+        $_SESSION['nb_players'] = $nbPlayers;
+        $_SESSION['players'] = $players;
+        $_SESSION['current_player'] = 0;
 
         header('Location: ?action=play');
         exit;

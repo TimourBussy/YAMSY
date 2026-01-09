@@ -7,7 +7,7 @@
         <div class="col">
             <h2><?= $nbPlayers > 1 ? 'Multiplayer' : 'Solo' ?> Mode</h2>
             <p>
-                <?= $nbPlayers > 1 ? htmlspecialchars($_SESSION['username']) . "'s turn - " : "" ?>
+                <?= $nbPlayers > 1 ? htmlspecialchars($currentPlayer) . "'s turn - " : "" ?>
                 3 rolls left
             </p>
         </div>
@@ -44,94 +44,100 @@
             </button>
         </div>
 
-        <?php include $_SERVER['DOCUMENT_ROOT'] . '/public/svg/shapes.svg'; ?>
+        <div class="player-cards">
+            <?php require $_SERVER['DOCUMENT_ROOT'] . '/public/svg/shapes.svg';
 
-        <div class="card-col outlined">
-            <div class="user-info">
-                <h3>
-                    <?= htmlspecialchars($_SESSION['username']); ?>
-                </h3>
-                <span class="rounded-bg">Your turn</span>
-            </div>
-            <div class="grid game-grid">
-                <div class="col">
-                    <button disabled>Ones (1)</button>
-                    <button disabled>Twos (2)</button>
-                    <button disabled>Threes (3)</button>
-                    <button disabled>Fours (4)</button>
-                    <button disabled>Fives (5)</button>
-                    <button disabled>Sixes (6)</button>
+            foreach ($players as $index => $p): ?>
+                <div class="card-col <?= $index === $currentIndex ? 'outlined' : '' ?>">
+                    <div class="user-info">
+                        <h3>
+                            <?= htmlspecialchars($p) ?>
+                        </h3>
+                        <?php if ($index === $currentIndex): ?>
+                            <span class="rounded-bg">Your turn</span>
+                        <?php endif; ?>
+                    </div>
+                    <div class="grid game-grid">
+                        <div class="col">
+                            <button disabled>Ones (1)</button>
+                            <button disabled>Twos (2)</button>
+                            <button disabled>Threes (3)</button>
+                            <button disabled>Fours (4)</button>
+                            <button disabled>Fives (5)</button>
+                            <button disabled>Sixes (6)</button>
+                        </div>
+                        <div class="col">
+                            <button disabled>
+                                Three of a Kind
+                                <span class="shapes">
+                                    <?= str_repeat("<svg><use href='#shape-square'/></svg>", 3); ?>
+                                </span>
+                            </button>
+                            <button disabled>
+                                Four of a Kind
+                                <span class="shapes">
+                                    <?= str_repeat("<svg><use href='#shape-circle'/></svg>", 4); ?>
+                                </span>
+                            </button>
+                            <button disabled>
+                                Full House
+                                <span class="shapes">
+                                    <?= str_repeat("<svg><use href='#shape-diamond'/></svg>", 3) . str_repeat("<svg><use href='#shape-triangle'/></svg>", 2); ?>
+                                </span>
+                            </button>
+                            <button disabled>
+                                Small Straight
+                                <span class="shapes">
+                                    <svg>
+                                        <use href='#shape-square' />
+                                    </svg>
+                                    <svg>
+                                        <use href='#shape-circle' />
+                                    </svg>
+                                    <svg>
+                                        <use href='#shape-diamond' />
+                                    </svg>
+                                    <svg>
+                                        <use href='#shape-triangle' />
+                                    </svg>
+                                </span>
+                            </button>
+                            <button disabled>
+                                Large Straight
+                                <span class="shapes">
+                                    <svg>
+                                        <use href='#shape-square' />
+                                    </svg>
+                                    <svg>
+                                        <use href='#shape-circle' />
+                                    </svg>
+                                    <svg>
+                                        <use href='#shape-diamond' />
+                                    </svg>
+                                    <svg>
+                                        <use href='#shape-triangle' />
+                                    </svg>
+                                    <svg>
+                                        <use href='#shape-star' />
+                                    </svg>
+                                </span>
+                            </button>
+                            <button disabled>
+                                YAMSY
+                                <span class="shapes">
+                                    <?= str_repeat("<svg><use href='#shape-star'/></svg>", 5); ?>
+                                </span>
+                            </button disabled>
+                            <button disabled>Chance (any)</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row total">
+                        <h4>Total</h4>
+                        <span class="total-number">0</span>
+                    </div>
                 </div>
-                <div class="col">
-                    <button disabled>
-                        Three of a Kind
-                        <span class="shapes">
-                            <?= str_repeat("<svg><use href='#shape-square'/></svg>", 3); ?>
-                        </span>
-                    </button>
-                    <button disabled>
-                        Four of a Kind
-                        <span class="shapes">
-                            <?= str_repeat("<svg><use href='#shape-circle'/></svg>", 4); ?>
-                        </span>
-                    </button>
-                    <button disabled>
-                        Full House
-                        <span class="shapes">
-                            <?= str_repeat("<svg><use href='#shape-diamond'/></svg>", 3) . str_repeat("<svg><use href='#shape-triangle'/></svg>", 2); ?>
-                        </span>
-                    </button>
-                    <button disabled>
-                        Small Straight
-                        <span class="shapes">
-                            <svg>
-                                <use href='#shape-square' />
-                            </svg>
-                            <svg>
-                                <use href='#shape-circle' />
-                            </svg>
-                            <svg>
-                                <use href='#shape-diamond' />
-                            </svg>
-                            <svg>
-                                <use href='#shape-triangle' />
-                            </svg>
-                        </span>
-                    </button>
-                    <button disabled>
-                        Large Straight
-                        <span class="shapes">
-                            <svg>
-                                <use href='#shape-square' />
-                            </svg>
-                            <svg>
-                                <use href='#shape-circle' />
-                            </svg>
-                            <svg>
-                                <use href='#shape-diamond' />
-                            </svg>
-                            <svg>
-                                <use href='#shape-triangle' />
-                            </svg>
-                            <svg>
-                                <use href='#shape-star' />
-                            </svg>
-                        </span>
-                    </button>
-                    <button disabled>
-                        YAMSY
-                        <span class="shapes">
-                            <?= str_repeat("<svg><use href='#shape-star'/></svg>", 5); ?>
-                        </span>
-                    </button disabled>
-                    <button disabled>Chance (any)</button>
-                </div>
-            </div>
-            <hr>
-            <div class="row total">
-                <h4>Total</h4>
-                <span class="total-number">0</span>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </body>

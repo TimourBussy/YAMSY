@@ -1,5 +1,6 @@
 <?php
 require_once 'models/User.php';
+require_once 'models/Game.php';
 
 class GameController
 {
@@ -28,6 +29,10 @@ class GameController
     {
         $nbPlayers = $_SESSION['nb_players'] ?? 1;
         $players = $_SESSION['players'] ?? [];
+
+        $currentIndex = $_SESSION['current_player'] ?? 0;
+        $currentPlayer = $players[$currentIndex] ?? $_SESSION['username'] ?? 'Player 1';
+
         $game = $this->game;
         include 'views/game.php';
     }
