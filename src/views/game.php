@@ -8,7 +8,7 @@
             <h2><?= $nbPlayers > 1 ? 'Multiplayer' : 'Solo' ?> Mode</h2>
             <p>
                 <?= $nbPlayers > 1 ? htmlspecialchars($currentPlayer) . "'s turn - " : "" ?>
-                3 rolls left
+                <span class="rollsLeft">3</span> rolls left
             </p>
         </div>
         <a href="?action=home" class="button">Quit</a>
@@ -32,7 +32,7 @@
                     </button>
                 <?php endfor ?>
             </div>
-            <button class="main-button">
+            <button onclick="roll()" class="main-button" id="rollButton">
                 <svg fill="#ffffff" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 861.143 861.143" xml:space="preserve"
                     stroke="#ffffff">
@@ -59,12 +59,12 @@
                     </div>
                     <div class="grid game-grid">
                         <div class="col">
-                            <button disabled>Ones (1)</button>
-                            <button disabled>Twos (2)</button>
-                            <button disabled>Threes (3)</button>
-                            <button disabled>Fours (4)</button>
-                            <button disabled>Fives (5)</button>
-                            <button disabled>Sixes (6)</button>
+                            <button disabled>Ones (1) <span class="points">-</span></button>
+                            <button disabled>Twos (2) <span class="points">-</span></button>
+                            <button disabled>Threes (3) <span class="points">-</span></button>
+                            <button disabled>Fours (4) <span class="points">-</span></button>
+                            <button disabled>Fives (5) <span class="points">-</span></button>
+                            <button disabled>Sixes (6) <span class="points">-</span></button>
                         </div>
                         <div class="col">
                             <button disabled>
@@ -72,18 +72,21 @@
                                 <span class="shapes">
                                     <?= str_repeat("<svg><use href='#shape-square'/></svg>", 3); ?>
                                 </span>
+                                <span class="points">-</span>
                             </button>
                             <button disabled>
                                 Four of a Kind
                                 <span class="shapes">
                                     <?= str_repeat("<svg><use href='#shape-circle'/></svg>", 4); ?>
                                 </span>
+                                <span class="points">-</span>
                             </button>
                             <button disabled>
                                 Full House
                                 <span class="shapes">
                                     <?= str_repeat("<svg><use href='#shape-diamond'/></svg>", 3) . str_repeat("<svg><use href='#shape-triangle'/></svg>", 2); ?>
                                 </span>
+                                <span class="points">-</span>
                             </button>
                             <button disabled>
                                 Small Straight
@@ -101,6 +104,7 @@
                                         <use href='#shape-triangle' />
                                     </svg>
                                 </span>
+                                <span class="points">-</span>
                             </button>
                             <button disabled>
                                 Large Straight
@@ -121,14 +125,16 @@
                                         <use href='#shape-star' />
                                     </svg>
                                 </span>
+                                <span class="points">-</span>
                             </button>
                             <button disabled>
                                 YAMSY
                                 <span class="shapes">
                                     <?= str_repeat("<svg><use href='#shape-star'/></svg>", 5); ?>
                                 </span>
+                                <span class="points">-</span>
                             </button disabled>
-                            <button disabled>Chance (any)</button>
+                            <button disabled>Chance (any) <span class="points">-</span></button>
                         </div>
                     </div>
                     <hr>
@@ -140,6 +146,7 @@
             <?php endforeach; ?>
         </div>
     </div>
+    <script src="/public/js/game.js"></script>
 </body>
 
 </html>

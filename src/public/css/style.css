@@ -1,7 +1,14 @@
 :root {
 	font-family: "Inter", sans-serif;
 	background: linear-gradient(to right, #fff7ed, #fffbeb);
-	--color-primary: #fcb017;
+	--color-primary-r: 252;
+	--color-primary-g: 176;
+	--color-primary-b: 23;
+	--color-primary: rgb(
+		var(--color-primary-r),
+		var(--color-primary-g),
+		var(--color-primary-b)
+	);
 	--color-grey1: #0a0a0a;
 	--color-grey2: #595959;
 	--color-grey3: #6a7282;
@@ -219,7 +226,8 @@ button {
 	border-radius: 12px;
 }
 
-a:disabled {
+a:disabled,
+.main-button:disabled {
 	opacity: 0.5;
 	cursor: not-allowed;
 }
@@ -432,13 +440,18 @@ p:not(.big) {
 .dice {
 	width: 80px;
 	aspect-ratio: 1;
-	background-color: rgba(252, 176, 23, 0.5);
+	background-color: rgba(
+		var(--color-primary-r),
+		var(--color-primary-g),
+		var(--color-primary-b),
+		0.5
+	);
 	border-radius: 12px;
 	position: relative;
 	display: flex;
 	cursor: pointer;
 	transform-origin: center;
-	transition: transform 0.15s ease, box-shadow 0.15s ease;
+	transition: all 0.15s ease;
 }
 
 .dice:hover {
@@ -543,6 +556,9 @@ p:not(.big) {
 	align-items: center;
 	justify-content: space-between;
 	gap: 0.5rem;
+	border: 1px solid;
+	cursor: pointer;
+	transition: all 0.15s ease;
 }
 
 button .shapes {
@@ -558,7 +574,8 @@ button .shapes {
 	cursor: not-allowed;
 }
 
-.game-grid button:disabled svg {
+.game-grid button:disabled svg,
+.game-grid button:disabled .points {
 	opacity: 0.5;
 }
 
@@ -654,9 +671,15 @@ fieldset label:hover {
 	border-color: var(--color-grey4);
 }
 
-input[type="radio"]:checked + label {
+input[type="radio"]:checked + label,
+.game-grid button {
 	border-color: var(--color-primary);
-	background-color: #fff7ed;
+	background-color: rgba(
+		var(--color-primary-r),
+		var(--color-primary-g),
+		var(--color-primary-b),
+		0.1
+	);
 }
 
 input[type="radio"]:focus-visible + label {
