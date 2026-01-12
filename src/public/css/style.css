@@ -555,7 +555,7 @@ p:not(.big) {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	gap: 0.5rem;
+	gap: 0.25rem;
 	border: 1px solid;
 	cursor: pointer;
 	transition: all 0.15s ease;
@@ -575,8 +575,13 @@ button .shapes {
 }
 
 .game-grid button:disabled svg,
-.game-grid button:disabled .points {
+.game-grid button:disabled .score {
 	opacity: 0.5;
+	color: var(--color-grey4);
+}
+
+.game-grid .score {
+	color: var(--color-primary);
 }
 
 .card-col:has(.game-grid) {
