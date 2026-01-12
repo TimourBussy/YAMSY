@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+require_once 'config/database.php';
 require_once 'controllers/AuthController.php';
 require_once 'controllers/HomeController.php';
 require_once 'controllers/GameController.php';
@@ -8,8 +9,8 @@ require_once 'controllers/GameController.php';
 $action = $_GET['action'] ?? 'home';
 
 $authController = new AuthController();
-$homeController = new HomeController();
-$gameController = new GameController();
+$homeController = new HomeController($pdo);
+$gameController = new GameController($pdo);
 
 if (in_array($action, ['login', 'signup', 'doLogin', 'doSignup'])) {
     switch ($action) {
@@ -65,6 +66,10 @@ switch ($action) {
         $gameController->showGame();
         break;
 
+    case 'save_game':
+        $gameController->saveGame();
+        break;
+
     case 'game_setup':
         $gameController->showGameSetup();
         break;
@@ -74,4 +79,3 @@ switch ($action) {
         $homeController->showHome();
         break;
 }
-?>

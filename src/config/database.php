@@ -1,12 +1,14 @@
 <?php
-class Database {
+class Database
+{
     private $host = 'db';
     private $db_name = 'yamsy_db';
     private $username = 'yamsy_user';
     private $password = 'yamsy_pass';
     private $pdo = null;
 
-    public function connect() {
+    public function connect()
+    {
         if ($this->pdo !== null) return $this->pdo;
 
         try {
@@ -21,6 +23,11 @@ class Database {
             $this->pdo = new PDO($dsn, $this->username, $this->password, $options);
 
             return $this->pdo;
-        } catch (PDOException $e) { die("Database connection error: " . $e->getMessage()); }
+        } catch (PDOException $e) {
+            die("Database connection error: " . $e->getMessage());
+        }
     }
 }
+
+$database = new Database();
+$pdo = $database->connect();

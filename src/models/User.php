@@ -14,18 +14,15 @@ class User
     public function create($username, $password)
     {
         try {
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
             $stmt = $this->db->prepare("INSERT INTO users (username, password)
-                                               VALUES (:username, :password)");
+                                        VALUES (:username, :password)");
 
             $stmt->bindParam(':username', $username);
-            $stmt->bindParam(':password', $hashedPassword);
+            $stmt->bindParam(':password', password_hash($password, PASSWORD_DEFAULT));
 
             $stmt->execute();
 
             return $this->db->lastInsertId();
-
         } catch (PDOException $e) {
             error_log("Error creating user: " . $e->getMessage());
             return false;
@@ -35,8 +32,8 @@ class User
     public function login($username, $password)
     {
         $stmt = $this->db->prepare("SELECT id, username, password
-                                           FROM users
-                                           WHERE username = :username");
+                                    FROM users
+                                    WHERE username = :username");
 
         $stmt->bindParam(':username', $username);
         $stmt->execute();
@@ -54,8 +51,8 @@ class User
     public function getById($id)
     {
         $stmt = $this->db->prepare("SELECT id, username
-                                           FROM users
-                                           WHERE id = :id");
+                                    FROM users
+                                    WHERE id = :id");
 
         $stmt->bindParam(':id', $id);
         $stmt->execute();

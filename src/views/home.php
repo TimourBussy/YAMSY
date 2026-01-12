@@ -16,6 +16,8 @@
     <a href="?action=logout" class="button">Logout</a>
   </header>
 
+  <?php $emojis = ['🥇', '🥈', '🥉', '4️⃣', '5️⃣']; ?>
+
   <main class="grid">
     <a href="?action=game">
       <div class="card-col">
@@ -81,9 +83,20 @@
             <path d="M18 22H6" />
           </g>
         </svg>
-        <h3>Top 5 Solo Scores</h2>
+        <h3>Top 5 Solo Scores</h3>
       </div>
-      <p>No games played yet</p>
+      <?php if (empty($topSoloScores)): ?>
+        <p>No games played yet</p>
+      <?php else: ?>
+        <div class="leaderboard">
+          <?php foreach ($topSoloScores as $index => $score): ?>
+            <div class="leaderboard-item">
+              <span class="leaderboard-left"><span><?= $emojis[$index] ?></span><span><?= date('M j, Y', strtotime($score['game_date'])) ?></span></span>
+              <span class="leaderboard-right"><?= htmlspecialchars($score['score']) ?> pts</span>
+            </div>
+          <?php endforeach; ?>
+        </div>
+      <?php endif; ?>
     </div>
 
     <div class="card-col">
@@ -102,9 +115,20 @@
             <path d="M18 22H6" />
           </g>
         </svg>
-        <h3>Top 5 Multi Players</h2>
+        <h3>Top 5 Multi Players</h3>
       </div>
-      <p>No games played yet</p>
+      <?php if (empty($topMultiplayerWinners)): ?>
+        <p>No games played yet</p>
+      <?php else: ?>
+        <div class="leaderboard">
+          <?php foreach ($topMultiplayerWinners as $index => $winner): ?>
+            <div class="leaderboard-item">
+              <span class="leaderboard-left"><span><?= $emojis[$index] ?></span><span><?= htmlspecialchars($winner['username']) ?></span></span>
+              <span class="leaderboard-right"><?= htmlspecialchars($winner['victories_count']) ?> wins</span>
+            </div>
+          <?php endforeach; ?>
+        </div>
+      <?php endif; ?>
     </div>
   </main>
 

@@ -50,7 +50,8 @@ DROP TABLE IF EXISTS `multiplayer_participants`;
 CREATE TABLE `multiplayer_participants` (
   `id` int NOT NULL AUTO_INCREMENT,
   `game_id` int NOT NULL,
-  `user_id` int NOT NULL,
+  `user_id` int DEFAULT NULL,
+  `player_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `score` int NOT NULL DEFAULT '0',
   `rank` int DEFAULT NULL,
   `is_winner` tinyint(1) NOT NULL DEFAULT '0',
@@ -165,7 +166,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`yamsy_user`@`%` SQL SECURITY DEFINER */
-/*!50001 VIEW `top_5_multiplayer_winners` AS select `u`.`username` AS `username`,count(0) AS `victories_count` from (`multiplayer_participants` `mp` join `users` `u` on((`mp`.`user_id` = `u`.`id`))) where (0 <> `mp`.`is_winner`) group by `u`.`id`,`u`.`username` order by `victories_count` desc limit 5 */;
+/*!50001 VIEW `top_5_multiplayer_winners` AS select coalesce(`u`.`username`,`mp`.`player_name`) AS `username`,count(0) AS `victories_count` from (`multiplayer_participants` `mp` left join `users` `u` on((`mp`.`user_id` = `u`.`id`))) where (`mp`.`is_winner` = 1) group by coalesce(`u`.`id`,`mp`.`player_name`),coalesce(`u`.`username`,`mp`.`player_name`) order by `victories_count` desc limit 5 */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
