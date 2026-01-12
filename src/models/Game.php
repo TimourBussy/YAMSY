@@ -40,11 +40,7 @@ class Game
     public function saveMultiplayerGame($players, $scores)
     {
         try {
-            error_log("saveMultiplayerGame called with " . count($players) . " players");
 
-            $this->pdo->beginTransaction();
-
-            $stmt = $this->pdo->prepare("INSERT INTO multiplayer_games (game_date, status, started_at) 
                                          VALUES (NOW(), 'completed', NOW())");
             $stmt->execute();
 
@@ -58,13 +54,8 @@ class Game
             usort($playerData, fn($a, $b) => $b['score'] - $a['score']);
 
             $gameId = $this->pdo->lastInsertId();
-            error_log("Game created with ID: " . $gameId);
 
             foreach ($playerData as $rank => $player) {
-                error_log("Processing player: " . $player['name'] . " with score: " . $player['score']);
-
-                $stmt = $this->pdo->prepare("SELECT id
-                                             FROM users
                                              WHERE username = :username");
                 $stmt->bindValue(':username', $player['name'], PDO::PARAM_STR);
                 $stmt->execute();
@@ -86,10 +77,8 @@ class Game
             }
 
             $this->pdo->commit();
-            error_log("Transaction committed successfully");
             return true;
         } catch (Exception $e) {
-            error_log("Exception in saveMultiplayerGame: " . $e->getMessage());
             $this->pdo->rollBack();
             return false;
         }

@@ -52,9 +52,6 @@ class GameController
 
         $data = json_decode(file_get_contents('php://input'), true);
 
-        // Debug logging
-        error_log("Save game called with data: " . json_encode($data));
-
         if (!isset($data['mode'])) {
             echo json_encode(['success' => false, 'message' => 'Missing mode']);
             return;
@@ -70,20 +67,9 @@ class GameController
                 echo json_encode(['success' => false, 'error' => 'User not logged in']);
             }
         } else {
-            error_log("Attempting to save multiplayer game");
-            error_log("Game model exists: " . ($this->gameModel ? 'yes' : 'no'));
-            error_log("Players: " . json_encode($data['players'] ?? []));
-            error_log("Scores: " . json_encode($data['scores'] ?? []));
-
             if ($this->gameModel) {
-                try {
-                    $result = $this->gameModel->saveMultiplayerGame($data['players'] ?? [], $data['scores'] ?? []);
-                    error_log("Save result: " . ($result ? 'success' : 'failure'));
-                    echo json_encode(['success' => $result]);
-                } catch (Exception $e) {
-                    error_log("Error saving multiplayer game: " . $e->getMessage());
-                    echo json_encode(['success' => false, 'error' => $e->getMessage()]);
-                }
+                $result = $this->gameModel->saveMultiplayerGame($data['players'] ?? [], $data['scores'] ?? []);
+                echo json_encode(['success' => $result]);
             } else {
                 echo json_encode(['success' => false, 'error' => 'Game model not initialized']);
             }
