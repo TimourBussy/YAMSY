@@ -40,7 +40,7 @@ class Game
     public function saveMultiplayerGame($players, $scores)
     {
         try {
-
+            $stmt = $this->pdo->prepare("INSERT INTO multiplayer_games (game_date, status, started_at) 
                                          VALUES (NOW(), 'completed', NOW())");
             $stmt->execute();
 
@@ -56,7 +56,7 @@ class Game
             $gameId = $this->pdo->lastInsertId();
 
             foreach ($playerData as $rank => $player) {
-                                             WHERE username = :username");
+                $stmt = $this->pdo->prepare("SELECT id FROM users WHERE username = :username");
                 $stmt->bindValue(':username', $player['name'], PDO::PARAM_STR);
                 $stmt->execute();
                 $user = $stmt->fetch();

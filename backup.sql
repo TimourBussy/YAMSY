@@ -163,7 +163,7 @@ UNLOCK TABLES;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
 /*!50001 SET character_set_client      = utf8mb4 */;
 /*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`yamsy_user`@`%` SQL SECURITY DEFINER */
 /*!50001 VIEW `top_5_multiplayer_winners` AS select coalesce(`u`.`username`,`mp`.`player_name`) AS `username`,count(0) AS `victories_count` from (`multiplayer_participants` `mp` left join `users` `u` on((`mp`.`user_id` = `u`.`id`))) where (`mp`.`is_winner` = 1) group by coalesce(`u`.`id`,`mp`.`player_name`),coalesce(`u`.`username`,`mp`.`player_name`) order by `victories_count` desc limit 5 */;
@@ -181,7 +181,7 @@ UNLOCK TABLES;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
 /*!50001 SET character_set_client      = utf8mb4 */;
 /*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`yamsy_user`@`%` SQL SECURITY DEFINER */
 /*!50001 VIEW `top_5_solo_scores` AS select `u`.`username` AS `username`,`s`.`score` AS `score`,`s`.`game_date` AS `game_date` from (`solo_games` `s` join `users` `u` on((`s`.`user_id` = `u`.`id`))) order by `s`.`score` desc limit 5 */;
