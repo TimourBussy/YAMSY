@@ -17,8 +17,9 @@ class User
             $stmt = $this->db->prepare("INSERT INTO users (username, password)
                                         VALUES (:username, :password)");
 
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
             $stmt->bindParam(':username', $username);
-            $stmt->bindParam(':password', password_hash($password, PASSWORD_DEFAULT));
+            $stmt->bindParam(':password', $hashedPassword);
 
             $stmt->execute();
 

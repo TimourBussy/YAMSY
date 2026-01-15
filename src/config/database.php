@@ -1,11 +1,16 @@
 <?php
 class Database
 {
-    private $host = 'db';
+    private $host;
     private $db_name = 'yamsy_db';
-    private $username = 'yamsy_user';
-    private $password = 'yamsy_pass';
+    private $username = 'admin';
+    private $password = 'idf1986';
     private $pdo = null;
+
+    public function __construct()
+    {
+        $this->host = (gethostbyname('db') !== 'db') ? 'db' : 'localhost';
+    }
 
     public function connect()
     {
@@ -28,6 +33,3 @@ class Database
         }
     }
 }
-
-$database = new Database();
-$pdo = $database->connect();

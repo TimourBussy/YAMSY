@@ -12,8 +12,9 @@ class HomeController
     public function showHome()
     {
         $username = $_SESSION['username'];
-        $topSoloScores = $this->gameModel->getTopSoloScores();
-        $topMultiplayerWinners = $this->gameModel->getTopMultiplayerWinners();
+        $userId = $_SESSION['user_id'] ?? null;
+        $topSoloScores = $this->gameModel->getTopSoloScores($userId);
+        $topMultiplayerWinners = $this->gameModel->getTopMultiplayerWinners($userId);
         require 'views/home.php';
     }
 }

@@ -7,7 +7,7 @@ services:
     volumes:
       - ./src:/var/www/html
     depends_on:
-    - db
+      - db
 
   db:
     image: mysql:8.0
@@ -17,8 +17,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: yamsy_db
-      MYSQL_USER: yamsy_user
-      MYSQL_PASSWORD: yamsy_pass
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: idf1986
     volumes:
       - db_data:/var/lib/mysql
 

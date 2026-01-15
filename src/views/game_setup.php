@@ -30,7 +30,7 @@
         </form>
     </div>
 
-    <script src="/public/js/nbPlayers.js"></script>
+    <script src="public/js/nbPlayers.js"></script>
 </body>
 
 </html>

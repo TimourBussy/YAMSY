@@ -6,7 +6,7 @@
   <header class="card-row">
     <div class="col">
       <div class="logo-horizontal">
-        <img src="/public/images/logo-y.png" alt="YAMSY logo">
+        <img src="public/images/logo-y.png" alt="YAMSY logo">
         <div class="col">
           <h1>YAMSY</h1>
           <p class="big">Welcome, <?= htmlspecialchars($_SESSION['username']); ?>!</p>
@@ -123,8 +123,21 @@
         <div class="leaderboard">
           <?php foreach ($topMultiplayerWinners as $index => $winner): ?>
             <div class="leaderboard-item">
-              <span class="leaderboard-left"><span><?= $emojis[$index] ?></span><span><?= htmlspecialchars($winner['username']) ?></span></span>
-              <span class="leaderboard-right"><?= htmlspecialchars($winner['victories_count']) ?> wins</span>
+              <span class="leaderboard-left">
+                <span><?= $emojis[$index] ?></span>
+                <?php if (isset($winner['game_date'])): ?>
+                  <span><?= date('M j, Y', strtotime($winner['game_date'])) ?></span>
+                <?php else: ?>
+                  <span><?= htmlspecialchars($winner['username']) ?></span>
+                <?php endif; ?>
+              </span>
+              <span class="leaderboard-right">
+                <?php if (isset($winner['score'])): ?>
+                  <?= htmlspecialchars($winner['score']) ?> pts<?= isset($winner['is_winner']) && $winner['is_winner'] ? ' 🏆' : '' ?>
+                <?php else: ?>
+                  <?= htmlspecialchars($winner['victories_count']) ?> wins
+                <?php endif; ?>
+              </span>
             </div>
           <?php endforeach; ?>
         </div>
@@ -132,7 +145,7 @@
     </div>
   </main>
 
-  <script src="/public/js/script.js"></script>
+  <script src="public/js/script.js"></script>
 </body>
 
 </html>

@@ -45,7 +45,7 @@
         </div>
 
         <div class="player-cards">
-            <?php require $_SERVER['DOCUMENT_ROOT'] . '/public/svg/shapes.svg';
+            <?php require 'public/svg/shapes.svg';
 
             foreach ($players as $index => $p): ?>
                 <div class="card-col <?= $index === $currentIndex ? 'outlined' : '' ?>">
@@ -149,7 +149,7 @@
             <?php endforeach; ?>
         </div>
     </div>
-    <script src="/public/js/game.js"></script>
+    <script src="public/js/game.js"></script>
 </body>
 
 </html>

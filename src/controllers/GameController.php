@@ -13,13 +13,9 @@ class GameController
             session_start();
         }
 
-        if (!isset($_SESSION['game'])) {
-            $_SESSION['game'] = new Game($pdo);
-        }
-
-        $this->game = $_SESSION['game'];
         if ($pdo) {
             $this->gameModel = new Game($pdo);
+            $this->game = $this->gameModel;
         }
     }
 

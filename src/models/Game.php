@@ -8,24 +8,51 @@ class Game
         $this->pdo = $pdo;
     }
 
-    public function getTopSoloScores($limit = 5)
+    public function getTopSoloScores($userId = null, $limit = 5)
     {
-        $stmt = $this->pdo->prepare("SELECT *
-                                     FROM top_5_solo_scores
-                                     LIMIT :limit");
+        if ($userId) {
+            $stmt = $this->pdo->prepare("SELECT s.score, s.game_date
+                                         FROM solo_games s
+                                         WHERE s.user_id = :user_id
+                                         ORDER BY s.score DESC
+                                         LIMIT :limit");
+            $stmt->bindValue(':user_id', $userId, PDO::PARAM_INT);
+        } else {
+            $stmt = $this->pdo->prepare("SELECT *
+                                         FROM top_5_solo_scores
+                                         LIMIT :limit");
+        }
         $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getTopMultiplayerWinners($limit = 5)
+    public function getTopMultiplayerWinners($userId = null, $limit = 5)
     {
-        $stmt = $this->pdo->prepare("SELECT *
-                                     FROM top_5_multiplayer_winners
-                                     LIMIT :limit");
-        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if ($userId) {
+            $stmt = $this->pdo->prepare("SELECT mp.player_name as username, COUNT(*) as victories_count
+                                         FROM multiplayer_participants mp
+                                         WHERE mp.game_id IN (
+                                             SELECT DISTINCT game_id 
+                                             FROM multiplayer_participants 
+                                             WHERE user_id = :user_id
+                                         )
+                                         AND mp.is_winner = 1
+                                         GROUP BY mp.player_name
+                                         ORDER BY victories_count DESC
+                                         LIMIT :limit");
+            $stmt->bindValue(':user_id', $userId, PDO::PARAM_INT);
+            $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            $stmt = $this->pdo->prepare("SELECT *
+                                         FROM top_5_multiplayer_winners
+                                         LIMIT :limit");
+            $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
     }
 
     public function saveSoloGame($userId, $score)

@@ -9,7 +9,7 @@ $isSignup = $mode === 'signup';
 
 <body class="login">
   <div class="card-col login-card">
-    <img src="/public/images/logo-full.png" alt="YAMSY logo" class="logo-full">
+    <img src="public/images/logo-full.png" alt="YAMSY logo" class="logo-full">
     <h6><?= $isSignup ? 'Create an account' : 'Login' ?></h6>
 
     <?php if (isset($error)): ?>
@@ -47,7 +47,7 @@ $isSignup = $mode === 'signup';
       </div>
     </form>
   </div>
-  <script src="/public/js/loadingBtn.js"></script>
+  <script src="public/js/loadingBtn.js"></script>
 </body>
 
 </html>
